@@ -24,11 +24,42 @@
         </nav>
     </header>
     <main class="container">
-        <div class="glass-panel">
-            <h1 class="main-text">내 첫번째 아이디어</h1>
-            <button class="next-btn" id="nextBtn">다음 문장보기</button>
-            <div class="glow"></div>
-        </div>
+        <!-- 핵심 기능 소개 섹션 -->
+        <section class="section-container">
+            <h3 class="section-title">핵심 기능 소개</h3>
+            <div class="glass-panel">
+                <h1 class="main-text">내 첫번째 아이디어</h1>
+                <button class="next-btn" id="nextBtn">다음 문장보기</button>
+                <div class="glow"></div>
+            </div>
+        </section>
+
+        <!-- 사용자 후기 섹션 -->
+        <section class="section-container">
+            <h3 class="section-title">사용자 후기</h3>
+            <div class="reviews-grid">
+                <div class="glass-panel review-card">
+                    <div class="review-header">
+                        <img src="user_profile_1.png" alt="김민준 프로필" class="profile-img">
+                        <div class="user-info">
+                            <h4 class="user-name">김민준</h4>
+                            <p class="user-role">프론트엔드 개발자</p>
+                        </div>
+                    </div>
+                    <p class="review-text">"디자인이 너무 세련되고 모션이 부드럽습니다. 계속 써보고 싶은 매력이 있네요!"</p>
+                </div>
+                <div class="glass-panel review-card">
+                    <div class="review-header">
+                        <img src="user_profile_2.png" alt="이지은 프로필" class="profile-img">
+                        <div class="user-info">
+                            <h4 class="user-name">이지은</h4>
+                            <p class="user-role">UI/UX 디자이너</p>
+                        </div>
+                    </div>
+                    <p class="review-text">"글래스모피즘과 파스텔 톤 배경의 매치가 완성도 높습니다. 문장 애니메이션 리셋 기능이 마음에 들어요."</p>
+                </div>
+            </div>
+        </section>
     </main>
     <footer class="main-footer">
         <p class="footer-text">&copy; 2026 My service</p>
