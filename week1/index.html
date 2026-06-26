@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <meta name="description" content="내 첫번째 아이디어를 보여주는 웹페이지입니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <main class="container">
         <div class="glass-panel">
@@ -22,28 +26,28 @@
         const sentences = [
             "내 첫번째 아이디어",
             "오늘도 해냈어요!",
-            "조금씩 나아지고 있어요",
+            "조금씩 나아지고 있어요.",
             "이대로 계속 가봅시다."
         ];
         const buttonClasses = ["", "btn-yellow", "btn-orange", "btn-green"];
         let currentIndex = 0;
-        
+
         const textEl = document.querySelector('.main-text');
         const btnEl = document.getElementById('nextBtn');
-        
+
         btnEl.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % sentences.length;
-            
+
             // Premium animation reset: triggers the slideUp transition again on text change
             textEl.style.animation = 'none';
             textEl.offsetHeight; // Trigger reflow to restart animation
             textEl.style.animation = 'slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards';
-            
+
             textEl.textContent = sentences[currentIndex];
-            
+
             // Reset button classes to base next-btn class
             btnEl.className = "next-btn";
-            
+
             // Add new color class if defined
             const newClass = buttonClasses[currentIndex];
             if (newClass) {
@@ -52,4 +56,5 @@
         });
     </script>
 </body>
+
 </html>
