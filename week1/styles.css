@@ -168,11 +168,11 @@ body::after {
     box-shadow: 
         0 8px 25px rgba(6, 78, 59, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
 }
 
 .next-btn:active {
-    transform: translateY(0);
+    transform: translateY(-1px) scale(0.98);
     box-shadow: 0 4px 10px rgba(6, 78, 59, 0.2);
 }
 
@@ -214,6 +214,9 @@ body::after {
     font-weight: 700;
     color: #a7f3d0; /* Primary Light Green text */
     letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .header-nav {
