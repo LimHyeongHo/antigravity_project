@@ -183,15 +183,38 @@ body::after {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        height: auto;
+        padding: 1.2rem 1rem;
+        gap: 1rem;
+    }
+    
+    .header-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .container {
+        gap: 3.5rem;
+        padding: 3.5rem 1.5rem;
+    }
+
     .glass-panel {
-        padding: 4rem 3rem;
+        padding: 4rem 2.5rem;
         border-radius: 24px;
     }
 }
 
 @media (max-width: 480px) {
     .glass-panel {
-        padding: 3rem 2rem;
+        padding: 3rem 1.5rem;
+    }
+    
+    .container {
+        gap: 2.5rem;
+        padding: 2.5rem 1rem;
     }
 }
 
