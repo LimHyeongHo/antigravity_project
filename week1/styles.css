@@ -183,3 +183,46 @@ body::after {
         padding: 3rem 2rem;
     }
 }
+
+/* Button color variations with premium gradients and matching shadow glows */
+.next-btn.btn-yellow {
+    background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+    box-shadow: 
+        0 4px 15px rgba(234, 179, 8, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.next-btn.btn-yellow:hover {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    box-shadow: 
+        0 8px 25px rgba(234, 179, 8, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.next-btn.btn-orange {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    box-shadow: 
+        0 4px 15px rgba(249, 115, 22, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.next-btn.btn-orange:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+    box-shadow: 
+        0 8px 25px rgba(249, 115, 22, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.next-btn.btn-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 
+        0 4px 15px rgba(16, 185, 129, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.next-btn.btn-green:hover {
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    box-shadow: 
+        0 8px 25px rgba(16, 185, 129, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}

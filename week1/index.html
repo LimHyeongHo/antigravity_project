@@ -23,8 +23,9 @@
             "내 첫번째 아이디어",
             "오늘도 해냈어요!",
             "조금씩 나아지고 있어요",
-            "이대로 계속 합시다."
+            "이대로 계속 가봅시다."
         ];
+        const buttonClasses = ["", "btn-yellow", "btn-orange", "btn-green"];
         let currentIndex = 0;
         
         const textEl = document.querySelector('.main-text');
@@ -39,6 +40,15 @@
             textEl.style.animation = 'slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards';
             
             textEl.textContent = sentences[currentIndex];
+            
+            // Reset button classes to base next-btn class
+            btnEl.className = "next-btn";
+            
+            // Add new color class if defined
+            const newClass = buttonClasses[currentIndex];
+            if (newClass) {
+                btnEl.classList.add(newClass);
+            }
         });
     </script>
 </body>
