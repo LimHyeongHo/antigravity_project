@@ -18,5 +18,28 @@
             <div class="glow"></div>
         </div>
     </main>
+    <script>
+        const sentences = [
+            "내 첫번째 아이디어",
+            "오늘도 해냈어요!",
+            "조금씩 나아지고 있어요",
+            "이대로 계속 합시다."
+        ];
+        let currentIndex = 0;
+        
+        const textEl = document.querySelector('.main-text');
+        const btnEl = document.getElementById('nextBtn');
+        
+        btnEl.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % sentences.length;
+            
+            // Premium animation reset: triggers the slideUp transition again on text change
+            textEl.style.animation = 'none';
+            textEl.offsetHeight; // Trigger reflow to restart animation
+            textEl.style.animation = 'slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            
+            textEl.textContent = sentences[currentIndex];
+        });
+    </script>
 </body>
 </html>
