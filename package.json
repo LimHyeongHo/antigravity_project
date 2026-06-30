@@ -1,0 +1,11 @@
+{
+  "name": "antigravity_project",
+  "version": "1.0.0",
+  "description": "Lunch Menu Voting App",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "google-spreadsheet": "^4.1.1"
+  }
+}

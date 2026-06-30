@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 점심 메뉴 투표</title>
+    <meta name="description" content="실시간으로 진행되는 점심 메뉴 투표 서비스입니다. 비빔밥, 돈까스, 국밥, 샐러드 중 오늘의 점심 메뉴를 선택해 주세요.">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="header-icon">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            나의 첫 서비스
+        </div>
+        <nav class="header-nav">
+            <a href="#" class="nav-item">소개</a>
+            <a href="#" class="nav-item">기능</a>
+            <a href="#" class="nav-item">문의</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="vote-section">
+            <h1 class="section-title">오늘의 점심 메뉴 투표 🍲</h1>
+            <p class="section-desc">가장 먹고 싶은 점심 메뉴를 선택하고 투표해 주세요! 결과는 실시간으로 반영됩니다.</p>
+            
+            <div class="vote-card-layout">
+                <!-- 투표 선택 판넬 -->
+                <div class="glass-panel voting-panel">
+                    <h2 class="panel-title">메뉴 선택</h2>
+                    <div class="menu-grid">
+                        <div class="menu-option" data-menu="bibimbap">
+                            <span class="menu-emoji">🥗</span>
+                            <span class="menu-name">비빔밥</span>
+                            <div class="select-badge">✓</div>
+                        </div>
+                        <div class="menu-option" data-menu="cutlet">
+                            <span class="menu-emoji">🥩</span>
+                            <span class="menu-name">돈까스</span>
+                            <div class="select-badge">✓</div>
+                        </div>
+                        <div class="menu-option" data-menu="gukbap">
+                            <span class="menu-emoji">🍲</span>
+                            <span class="menu-name">국밥</span>
+                            <div class="select-badge">✓</div>
+                        </div>
+                        <div class="menu-option" data-menu="salad">
+                            <span class="menu-emoji">🍅</span>
+                            <span class="menu-name">샐러드</span>
+                            <div class="select-badge">✓</div>
+                        </div>
+                    </div>
+                    <button class="vote-btn" id="voteBtn" disabled>투표하기</button>
+                </div>
+
+                <!-- 실시간 결과 판넬 -->
+                <div class="glass-panel results-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">실시간 투표 결과</h2>
+                        <button id="refreshBtn" class="refresh-btn" title="새로고침">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="refresh-icon">
+                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="results-container">
+                        <div class="result-row" id="res-bibimbap">
+                            <div class="result-info">
+                                <span class="result-name">🥗 비빔밥</span>
+                                <span class="result-stats"><strong class="pct">0%</strong> (<span class="count">0</span>표)</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill fill-bibimbap" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="result-row" id="res-cutlet">
+                            <div class="result-info">
+                                <span class="result-name">🥩 돈까스</span>
+                                <span class="result-stats"><strong class="pct">0%</strong> (<span class="count">0</span>표)</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill fill-cutlet" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="result-row" id="res-gukbap">
+                            <div class="result-info">
+                                <span class="result-name">🍲 국밥</span>
+                                <span class="result-stats"><strong class="pct">0%</strong> (<span class="count">0</span>표)</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill fill-gukbap" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="result-row" id="res-salad">
+                            <div class="result-info">
+                                <span class="result-name">🍅 샐러드</span>
+                                <span class="result-stats"><strong class="pct">0%</strong> (<span class="count">0</span>표)</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill fill-salad" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-votes">총 투표 수: <strong id="totalVotesCount">0</strong>표</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p class="footer-text">&copy; 2026 My service</p>
+    </footer>
+
+    <script>
+        // Initial vote counts mapped to sheet results
+        const votes = {
+            bibimbap: 0,
+            cutlet: 0,
+            gukbap: 0,
+            salad: 0
+        };
+
+        let selectedMenu = null;
+        const options = document.querySelectorAll('.menu-option');
+        const voteBtn = document.getElementById('voteBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+
+        // Handling menu option selection
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                options.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedMenu = option.dataset.menu;
+                voteBtn.disabled = false;
+                voteBtn.classList.add('active');
+            });
+        });
+
+        // Function to calculate percentages and refresh progress bars
+        function updateResults(animate = true) {
+            const total = Object.values(votes).reduce((sum, val) => sum + val, 0);
+            document.getElementById('totalVotesCount').textContent = total;
+
+            for (const [menu, count] of Object.entries(votes)) {
+                const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+                const row = document.getElementById(`res-${menu}`);
+                row.querySelector('.pct').textContent = `${pct}%`;
+                row.querySelector('.count').textContent = count;
+                
+                const fill = row.querySelector('.progress-bar-fill');
+                fill.style.width = `${pct}%`;
+            }
+        }
+
+        // Vote button click handler
+        voteBtn.addEventListener('click', async () => {
+            if (!selectedMenu) return;
+
+            // Prevent double clicks and show loading state
+            voteBtn.disabled = true;
+            const originalText = voteBtn.textContent;
+            voteBtn.textContent = '투표 중...';
+            voteBtn.style.opacity = '0.7';
+
+            try {
+                // Determine the menu text to send
+                const optionEl = document.querySelector(`.menu-option[data-menu="${selectedMenu}"] .menu-name`);
+                const menuName = optionEl ? optionEl.textContent : selectedMenu;
+
+                // Call Vercel serverless function
+                const response = await fetch('/api/vote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ menu: menuName })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                // Lock voting choices (1 vote limit simulation)
+                options.forEach(o => o.style.pointerEvents = 'none');
+                voteBtn.textContent = '투표 완료';
+                voteBtn.classList.remove('active');
+                voteBtn.style.opacity = '1';
+                
+                // Fetch the latest updated data directly from Google Sheet
+                fetchSheetData();
+
+            } catch (error) {
+                console.error("Voting failed:", error);
+                alert("투표 전송에 실패했습니다. (Vercel 환경이나 vercel dev로 실행 중인지 확인하세요.)");
+                // Revert button state on failure
+                voteBtn.disabled = false;
+                voteBtn.textContent = originalText;
+                voteBtn.style.opacity = '1';
+            }
+        });
+
+        // Global JSONP Callback for Google Sheets Visualizations API
+        window.googleDocCallback = function(data) {
+            if (refreshBtn) {
+                refreshBtn.classList.remove('loading');
+            }
+
+            if (!data || !data.table || !data.table.rows) {
+                console.error("Invalid data format received from Google Sheet.");
+                return;
+            }
+
+            // Reset votes count to compile from Sheet
+            votes.bibimbap = 0;
+            votes.cutlet = 0;
+            votes.gukbap = 0;
+            votes.salad = 0;
+
+            const rows = data.table.rows;
+            rows.forEach(row => {
+                if (!row.c || row.c.length < 2) return;
+                
+                const col0 = row.c[0] ? String(row.c[0].v).trim() : '';
+                const col1 = row.c[1] ? String(row.c[1].v).trim() : '';
+                
+                // Skip header row if matches exact strings
+                if (col0.toLowerCase() === 'timestamp' && col1.toLowerCase() === 'menu') {
+                    return;
+                }
+
+                if (!col1) return;
+
+                const menuLower = col1.toLowerCase();
+                if (menuLower.includes('비빔밥') || menuLower.includes('bibimbap')) {
+                    votes.bibimbap++;
+                } else if (menuLower.includes('돈까스') || menuLower.includes('돈가스') || menuLower.includes('cutlet')) {
+                    votes.cutlet++;
+                } else if (menuLower.includes('국밥') || menuLower.includes('gukbap')) {
+                    votes.gukbap++;
+                } else if (menuLower.includes('샐러드') || menuLower.includes('셀러드') || menuLower.includes('salad')) {
+                    votes.salad++;
+                }
+            });
+
+            // Refresh UI with sheet data
+            updateResults(true);
+        };
+
+        // Fetch sheet data dynamically using script injection (JSONP)
+        function fetchSheetData() {
+            if (refreshBtn) {
+                refreshBtn.classList.add('loading');
+            }
+
+            // Remove previous sheet script to avoid DOM clutter
+            const oldScript = document.getElementById('google-sheet-script');
+            if (oldScript) {
+                oldScript.remove();
+            }
+
+            const script = document.createElement('script');
+            script.id = 'google-sheet-script';
+            const sheetId = '1WTX2gDvEZCMXJ7jATo3qVphmdb3-4_H-lm2jpdgWLcQ';
+            // Append timestamp for cache busting
+            script.src = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=responseHandler:googleDocCallback&t=${Date.now()}`;
+            
+            script.onerror = function() {
+                console.error("Failed to load spreadsheet data.");
+                if (refreshBtn) {
+                    refreshBtn.classList.remove('loading');
+                }
+            };
+
+            document.body.appendChild(script);
+        }
+
+        // Event listener for the refresh button
+        refreshBtn.addEventListener('click', fetchSheetData);
+
+        // Fetch Sheet data on load
+        fetchSheetData();
+    </script>
+</body>
+</html>
